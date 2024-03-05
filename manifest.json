@@ -1,0 +1,18 @@
+{
+  "manifest_version": 3,
+  "name": "GSearchGMaps",
+  "version": "1.0.0",
+  "description": "Make maps search result clickable",
+  "icons": {
+    "48": "icon-48.png",
+    "96": "icon-96.png",
+    "128": "icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.google.com/search?q=*"],
+      "css": ["styles.css"],
+      "js": ["content-script.js"]
+    }    
+  ]
+}
