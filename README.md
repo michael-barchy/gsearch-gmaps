@@ -15,3 +15,10 @@ This first release of the extension adds a link to Google Maps to the static map
 # Future release
 
 A future release might be to replace the map with the embedded dynamic map.
+
+# How to install
+
+* Click Code -> Download ZIP
+* Unpack to your favorite location
+* Goto to Google Chrome extensions management
+* Click "Load unpacked extension" and point to the folder where you extracted the ZIP file
