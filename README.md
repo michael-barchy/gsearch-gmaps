@@ -22,3 +22,7 @@ A future release might be to replace the map with the embedded dynamic map.
 * Unpack to your favorite location
 * Goto to Google Chrome extensions management
 * Click "Load unpacked extension" and point to the folder where you extracted the ZIP file
+
+# Privacy
+
+The extension does not collect any data. The search query is only used to compose a maps URL.
