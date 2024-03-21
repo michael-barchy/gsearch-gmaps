@@ -94,9 +94,6 @@ GSearchGMap.makeMapClickable = function() {
   var mapClickable = document.querySelector('.map-clickable');
   if (null !== mapClickable && typeof mapClickable !== 'undefined') {
     var parent = mapClickable.closest('.kp-wholepage');
-    if (null == parent || typeof parent === 'undefined') {
-      parent = mapClickable.closest('[role="complementary"]');
-    }
     if (null !== parent && typeof parent !== 'undefined') {
       var address = parent.querySelector('a[href^="/maps/place"]');
       if (null !== address && typeof address !== 'undefined') {
