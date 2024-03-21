@@ -21,12 +21,21 @@ GSearchGMap.getQuery = function(map) {
 
 GSearchGMap.addMapsLink = function() {
   var nav = document.querySelector('div[role="navigation"]:has(div[jsslot])');
+  if (null === nav || typeof nav === 'undefined') {
+    nav = document.querySelector('div[role="navigation"]:has(div[jscontroller])');
+  }  
   if (null !== nav && !nav.classList.contains('with-maps-button')) {
     var container = nav.querySelector('div[jsslot]');
+    if (null === container || typeof nav === 'container') {
+      container = nav.querySelector('div[jscontroller]');
+    }  
     if (null !== container) {
-      var buttons = container.querySelectorAll('div:has(a[role=link])');
+      var buttons = container.querySelectorAll('div[data-hveid] > a[role=link]');
+      if (buttons.length === 0) {
+        buttons = container.querySelectorAll('div:has(a[role=link])');
+      }
       if (buttons.length > 0) {
-        var firstButton = buttons[0];
+        var firstButton = buttons[0].hasAttribute('href') ? buttons[0].parentNode : buttons[0];
         var mapButton = firstButton.cloneNode(true);
         var link = mapButton.querySelector('a[role=link]');
         var query = GSearchGMap.getQuery(null);
@@ -34,11 +43,14 @@ GSearchGMap.addMapsLink = function() {
           link.setAttribute('href', 'https://www.google.com/maps/search/' + query);
           link.setAttribute('target', '_blank');
           var text = link.querySelector('span');
+          if (null === text || typeof text === 'undefined') {
+            text = link.querySelector('div');
+          }
           if (null !== text) {
             text.innerText = 'Maps';
           }
           if (null !== firstButton.nextSibling) {
-            firstButton.parentNode.insertBefore(mapButton, firstButton.nextSibling);
+            firstButton.parentNode.insertBefore(mapButton, buttons[0].hasAttribute('href') ? firstButton : firstButton.nextSibling);
           } else {
             firstButton.parentNode.appendChild(mapButton);
           }
@@ -94,6 +106,9 @@ GSearchGMap.makeMapClickable = function() {
   var mapClickable = document.querySelector('.map-clickable');
   if (null !== mapClickable && typeof mapClickable !== 'undefined') {
     var parent = mapClickable.closest('.kp-wholepage');
+    if (null == parent || typeof parent === 'undefined') {
+      parent = mapClickable.closest('[role="complementary"]');
+    }
     if (null !== parent && typeof parent !== 'undefined') {
       var address = parent.querySelector('a[href^="/maps/place"]');
       if (null !== address && typeof address !== 'undefined') {
